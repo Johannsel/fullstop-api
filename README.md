@@ -29,7 +29,9 @@ If you want to run the internal DEV-Server of Django, change the directory to th
 
 The Server should now have the address: localhost:8000
 
-###
+### Run Production Server
+
+The Repository ships with a build in docker-compose.yaml.
 
 ## Goal
 
