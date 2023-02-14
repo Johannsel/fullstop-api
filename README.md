@@ -1,6 +1,6 @@
 # Restore Punctuation in multilingual ML translations as an API
 
-## MAC Workflow for DEV:
+## MAC/Linux Workflow for DEV:
 
 ### Create VENV
 
@@ -29,7 +29,7 @@ If you want to run the internal DEV-Server of Django, change the directory to th
 
 The Server should now have the address: localhost:8000
 
-### Run Production Server
+## Run Production Server
 
 The Repository ships with a build in docker-compose.yaml.
 
@@ -39,9 +39,9 @@ API für Satzzeichenkorrektur.
 Es soll für DEV und PROD funktionieren.
 Datenarm über das Internet.
 
-### Anfragen
+## Usage
 
-#### Input
+### Input
 
 Über die start.py lässt sich die Funktion "prod_call(input_wb, output_wb, url, max_row)" importieren.
 
@@ -61,6 +61,8 @@ Als Input wird eine Excel-Tabelle mit dem Format:
 | ... | ... |
 
 erwartet. Das Erste und einzige Arbeitsblatt _MUSS_ den Titel "Tabelle1" haben!
+
+### Output
 
 Der Output ist eine Excel-Tabelle mit dem Namen "output.xlsx" im Arbeitsdirectory. Die Datei wird bei mehrmaligem Aufruf überschrieben. Folgender Output wird erzeugt:
 | original | processed |
