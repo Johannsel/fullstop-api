@@ -21,11 +21,11 @@ def api(request):
 
             if "to_compare" in raw_data:
                 # Debug
-                hybrid = Punctuation.hybrid(raw_data['to_process'], raw_data['fstop_threshold'])
+                punctall = Punctuation.punctall(raw_data['to_process'])
                 fstop = Punctuation.fstop(raw_data['to_process'])
                 data = {
                     'ideal': raw_data['to_compare'],
-                    'hybrid': [hybrid, Helper.cer(hybrid, raw_data['to_compare'])],
+                    'punctall': [punctall, Helper.cer(punctall, raw_data['to_compare'])],
                     'fstop': [fstop, Helper.cer(fstop, raw_data['to_compare'])],
                     'original': [raw_data['to_process'], Helper.cer(raw_data['to_process'], raw_data['to_compare'])],
                     }
