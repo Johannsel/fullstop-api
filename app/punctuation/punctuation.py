@@ -1,6 +1,7 @@
 # DEPS:
 import re
 from .deepmultilingualpunctuation import PunctuationModel
+from .punctall import PunctallModel
 
 # Custom methods:
 from .sanitizers import pre_sanitizer, post_sanitizer
@@ -61,3 +62,10 @@ class Punctuation:
     def stt(i):
         o = i
         return o
+
+    # Smaller model by u/Kredor
+    def punctall(i):
+        i = pre_sanitizer(i)
+        model = PunctallModel()
+        o = model.restore_punctuation(i)
+        return post_sanitizer(o)

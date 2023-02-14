@@ -43,11 +43,13 @@ Datenarm über das Internet.
 
 ### Input
 
-Über die start.py lässt sich die Funktion "prod_call(input_wb, output_wb, url, max_row)" importieren.
+Über die start.py lässt sich die Funktion "prod_call(input_wb, output_wb, model, url, max_row)" importieren.
 
 'input_wb = /pfad/zur/input/excel/input.xlsx'
 
 'output_wb = /pfad/zur/output/excel/output.xlsx'
+
+'model = "fullstop" | "punctall"'
 
 'url = "http://aschenputtel.abinsall.com:8000/punctuation/"'
 

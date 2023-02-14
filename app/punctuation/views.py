@@ -31,7 +31,13 @@ def api(request):
                     }
             else:
                 # Production
-                data = {'processed': [raw_data['to_process'], Punctuation.fstop(raw_data['to_process'])],}
+                try:
+                    if raw_data['model'] == 'fullstop':
+                        data = {'processed': [raw_data['to_process'], Punctuation.fstop(raw_data['to_process']), 'fullstop'],}
+                    elif raw_data['model'] == 'punctall':
+                        data = {'processed': [raw_data['to_process'], Punctuation.punctall(raw_data['to_process']), 'punctall'],}
+                except Exception:
+                    data = {'processed': [raw_data['to_process'], Punctuation.fstop(raw_data['to_process']), 'fullstop'],}
 
             o=dict(data = data)
 

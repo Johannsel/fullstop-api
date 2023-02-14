@@ -15,9 +15,9 @@ def dev_request(to_process, to_compare, fstop_threshold):
     o = data['data']
     return o
 
-def prod_request(to_process, url):
+def prod_request(to_process, model ,url):
     global_headers = {'Content-Type':'application/json'}
-    data = {'to_process': to_process}
+    data = {'to_process': to_process, 'model': model}
     payload = dict(data = data)
     payload = json.dumps(payload)
     response = requests.post(str(url), data=payload, headers=global_headers, timeout=300)
@@ -54,13 +54,14 @@ def dev_call():
 
     o.save('output.xlsx')
 
-def prod_call(input_wb, output_wb, url, max_row):
+def prod_call(input_wb, output_wb, model, url, max_row):
     file = openpyxl.load_workbook(str(input_wb))
     sheet = file['Tabelle1']
     o = Workbook()
     o_sheet = o.active
     o_sheet["A1"] = "ORIGINAL:"
     o_sheet["B1"] = "PROCESSED:"
+    o_sheet["C1"] = "MODEL:"
 
     for c, row in enumerate(sheet.iter_rows(min_row=2, max_col=2, max_row=max_row,  values_only=True), start=2):
         gold_standard = row[0]
@@ -69,7 +70,7 @@ def prod_call(input_wb, output_wb, url, max_row):
         while True:
             try:
                 time.sleep(10)
-                call = prod_request(to_process, url)
+                call = prod_request(to_process, model, url)
             except:
                 print("Error! Retrying in 10s.")
                 continue
@@ -77,6 +78,7 @@ def prod_call(input_wb, output_wb, url, max_row):
         print("Finished with:" + str(call['processed'][1]))
         o_sheet[f"A{c}"] = call['processed'][0]
         o_sheet[f"B{c}"] = call['processed'][1]
+        o_sheet[f"C{c}"] = call['processed'][2]
 
     o.save(str(output_wb))
 

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-cxc5j(03fq)w=^1vk%w2&ntt7h3(%1b$m^sz$@znzlh^zu78g@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aschenputtel.abinsall.com', 'www.aschenputtel.abinsall.com', '0.0.0.0', 'localhost', 'web-service']
+ALLOWED_HOSTS = ['aschenputtel.abinsall.com', 'www.aschenputtel.abinsall.com', '0.0.0.0', 'localhost', '127.0.0.1', 'web-service']
 
 
 # Application definition
